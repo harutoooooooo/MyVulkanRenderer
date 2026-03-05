@@ -9,15 +9,13 @@
 namespace mvr
 {
 
-struct SwapChainSupportDetails
-{
+struct SwapChainSupportDetails {
 	VkSurfaceCapabilitiesKHR        capabilities;
 	std::vector<VkSurfaceFormatKHR> formats;
 	std::vector<VkPresentModeKHR>   presentModes;
 };
 
-struct QueueFamilyIndices
-{
+struct QueueFamilyIndices {
 	uint32_t graphicsFamily;
 	uint32_t presentFamily;
 	bool     graphicsFamilyHasValue = false;
@@ -28,7 +26,7 @@ struct QueueFamilyIndices
 	}
 };
 
-class MyEngineDevice
+class VulkanDevice
 {
   public:
 #ifdef NDEBUG
@@ -37,14 +35,14 @@ class MyEngineDevice
 	const bool enableValidationLayers = true;
 #endif
 
-	MyEngineDevice(Window &window);
-	~MyEngineDevice();
+	VulkanDevice(Window &window);
+	~VulkanDevice();
 
 	// Not copyable or movable
-	MyEngineDevice(const MyEngineDevice &)       = delete;
-	void operator=(const MyEngineDevice &)       = delete;
-	MyEngineDevice(MyEngineDevice &&)            = delete;
-	MyEngineDevice &operator=(MyEngineDevice &&) = delete;
+	VulkanDevice(const VulkanDevice &)       = delete;
+	void operator=(const VulkanDevice &)     = delete;
+	VulkanDevice(VulkanDevice &&)            = delete;
+	VulkanDevice &operator=(VulkanDevice &&) = delete;
 
 	VkCommandPool getCommandPool()
 	{
