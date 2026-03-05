@@ -1,6 +1,7 @@
 #pragma once
 
 #include "core/pipeline.h"
+#include "core/vulkan_device.h"
 #include "core/window.h"
 
 namespace mvr
@@ -15,9 +16,13 @@ class FirstApp
 	void run();
 
   private:
-	Window   window{WIDTH, HEIGHT, "MyVulkanRenderer"};
-	Pipeline pipeline{"../shaders/simple_shader.vert.spv",
-	                  "../shaders/simple_shader.frag.spv"};
+	Window       window{WIDTH, HEIGHT, "MyVulkanRenderer"};
+	VulkanDevice device{window};
+	Pipeline     pipeline{
+        device,
+        "../shaders/simple_shader.vert.spv",
+        "../shaders/simple_shader.frag.spv",
+        Pipeline::defaultPipelineConfigInfo(WIDTH, HEIGHT)};
 };
 
 }        // namespace mvr
