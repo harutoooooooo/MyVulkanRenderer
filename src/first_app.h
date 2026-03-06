@@ -1,6 +1,7 @@
 #pragma once
 
 #include "core/pipeline.h"
+#include "core/swap_chain.h"
 #include "core/vulkan_device.h"
 #include "core/window.h"
 
@@ -18,6 +19,7 @@ class FirstApp
   private:
 	Window       window{WIDTH, HEIGHT, "MyVulkanRenderer"};
 	VulkanDevice device{window};
+	SwapChain    swapChain{device, window.getExtent()};
 	Pipeline     pipeline{
         device,
         "../shaders/simple_shader.vert.spv",

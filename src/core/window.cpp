@@ -22,6 +22,11 @@ bool Window::shouldClose()
 	return glfwWindowShouldClose(window);
 }
 
+VkExtent2D Window::getExtent()
+{
+	return {width, height};
+}
+
 void Window::createWindowSurface(VkInstance instance, VkSurfaceKHR *surface)
 {
 	if (glfwCreateWindowSurface(instance, window, nullptr, surface) != VK_SUCCESS) {
