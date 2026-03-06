@@ -5,24 +5,33 @@
 // std
 #include <string>
 #include <vector>
-#include <vulkan/vulkan_core.h>
 
 namespace mvr
 {
 
 struct PipelineConfigInfo {
+	VkViewport                             viewport;
+	VkRect2D                               scissor;
+	VkPipelineViewportStateCreateInfo      viewportInfo;
+	VkPipelineInputAssemblyStateCreateInfo inputAssemblyInfo;
+	VkPipelineRasterizationStateCreateInfo rasterizationInfo;
+	VkPipelineMultisampleStateCreateInfo   multisampleInfo;
+	VkPipelineColorBlendAttachmentState    colorBlendAttachment;
+	VkPipelineColorBlendStateCreateInfo    colorBlendInfo;
+	VkPipelineDepthStencilStateCreateInfo  depthStencilInfo;
+	VkPipelineLayout                       pipelineLayout = VK_NULL_HANDLE;
+	VkRenderPass                           renderPass     = VK_NULL_HANDLE;
+	uint32_t                               subpass        = 0;
 };
 
 class Pipeline
 {
   public:
-	Pipeline(
-	    VulkanDevice             &device,
-	    const std::string        &vertFilePath,
-	    const std::string        &fragFilePath,
-	    const PipelineConfigInfo &configInfo);
-	~Pipeline()
-	{}
+	Pipeline(VulkanDevice             &device,
+	         const std::string        &vertFilePath,
+	         const std::string        &fragFilePath,
+	         const PipelineConfigInfo &configInfo);
+	~Pipeline();
 
 	Pipeline(const Pipeline &)            = delete;
 	Pipeline &operator=(const Pipeline &) = delete;
